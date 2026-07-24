@@ -22,5 +22,7 @@ namespace ConcesionarioBack.Controllers
             var brands = await service.GetBrandsAsync();
             return Ok(brands);
         }
+
+        // Seguir mismo patron para los demas controllers
     }
 }

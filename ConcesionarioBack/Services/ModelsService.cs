@@ -1,10 +1,11 @@
 ﻿using ConcesionarioBack.Data;
 using ConcesionarioBack.Entities;
+using ConcesionarioBack.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConcesionarioBack.Services
 {
-    public class ModelsService
+    public class ModelsService: IModelsService
     {
         private ConcesionarioDbContext context;
         public ModelsService(ConcesionarioDbContext context)

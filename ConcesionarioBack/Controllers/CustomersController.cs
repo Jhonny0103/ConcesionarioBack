@@ -7,20 +7,19 @@ namespace ConcesionarioBack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandsController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        private BrandsService service;
-        public BrandsController(BrandsService service)
+        private CustomersService service;
+        public CustomersController(CustomersService service)
         {
             this.service = service;
         }
-
         [HttpGet]
         [Route("[action]")]
-        public async Task<ActionResult<List<Brand>>> GetBrandsAsync()
+        public async Task<ActionResult<List<Customer>>> GetCustomersAsync()
         {
-            var brands = await service.GetBrandsAsync();
-            return Ok(brands);
+            var customers = await service.GetCustomersAsync();
+            return Ok(customers);
         }
     }
 }

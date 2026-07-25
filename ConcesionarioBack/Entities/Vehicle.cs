@@ -11,6 +11,8 @@ namespace ConcesionarioBack.Entities
         public int VehicleId { get; set; }
         [Column("ModelId")]
         public int ModelId { get; set; }
+        [Column]
+        public int BrandId { get; set; }
         [Column("LicensePlate")]
         public string LicensePlate { get; set; } = string.Empty;
         [Column("Color")]

@@ -31,6 +31,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//Añadir los permisos para el consumo desde el front Angular
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

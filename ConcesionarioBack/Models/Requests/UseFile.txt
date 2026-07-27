@@ -1,0 +1,4 @@
+﻿=== Uso de esta carpeta ===
+
+-> Payloads que recibes desde Angular (POST/PUT).
+-> Aquí defines los modelos que representan la estructura de los datos que tu API espera recibir desde el frontend.

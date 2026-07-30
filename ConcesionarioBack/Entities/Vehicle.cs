@@ -19,6 +19,8 @@ namespace ConcesionarioBack.Entities
         public string Color { get; set; } = string.Empty;
         [Column("Year")]
         public int Year { get; set; }
+        [Column("Mileage")]
+        public int Mileage { get; set; } = 0;
         [Column("Price")]
         public decimal Price { get; set; }
         // La columna CreatedDate establece la fecha y hora en el momento del registro.

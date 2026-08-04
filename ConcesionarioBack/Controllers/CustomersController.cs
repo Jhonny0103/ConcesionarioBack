@@ -3,6 +3,7 @@ using ConcesionarioBack.Models.Requests;
 using ConcesionarioBack.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ConcesionarioBack.Services.Interfaces;
 
 namespace ConcesionarioBack.Controllers
 {
@@ -10,16 +11,16 @@ namespace ConcesionarioBack.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        private CustomersService service;
-        public CustomersController(CustomersService service)
+        private readonly ICustomersService _service;
+        public CustomersController(ICustomersService service)
         {
-            this.service = service;
+            _service = service;
         }
         [HttpGet]
         [Route("[action]")]
         public async Task<ActionResult<List<Customer>>> GetCustomersAsync()
         {
-            var customers = await service.GetCustomersAsync();
+            var customers = await _service.GetCustomersAsync();
             return Ok(customers);
         }
 
@@ -29,7 +30,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var customer = await service.GetCustomerByIdAsync(id);
+                var customer = await _service.GetCustomerByIdAsync(id);
                 return Ok(customer);
             }
             catch (Exception ex)
@@ -44,7 +45,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var createdCustomer = await service.CreateCustomerAsync(customer);
+                var createdCustomer = await _service.CreateCustomerAsync(customer);
                 return Ok(createdCustomer);
             }
             catch (Exception ex)
@@ -59,7 +60,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var updatedCustomer = await service.UpdateCustomerAsync(customer);
+                var updatedCustomer = await _service.UpdateCustomerAsync(customer);
                 return Ok(updatedCustomer);
             }
             catch (Exception ex)
@@ -74,7 +75,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var deleted = await service.DeleteCustomerAsync(id);
+                var deleted = await _service.DeleteCustomerAsync(id);
                 return Ok(deleted);
             }
             catch (Exception ex)

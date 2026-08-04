@@ -3,6 +3,7 @@ using ConcesionarioBack.Models.Requests;
 using ConcesionarioBack.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ConcesionarioBack.Services.Interfaces;
 
 namespace ConcesionarioBack.Controllers
 {
@@ -10,16 +11,16 @@ namespace ConcesionarioBack.Controllers
     [ApiController]
     public class SalesController : ControllerBase
     {
-        private SalesService service;
-        public SalesController(SalesService service)
+        private readonly ISalesService _service;
+        public SalesController(ISalesService service)
         {
-            this.service = service;
+            _service = service;
         }
         [HttpGet]
         [Route("[action]")]
         public async Task<ActionResult<List<Sale>>> GetSalesAsync()
         {
-            var sales = await service.GetSalesAsync();
+            var sales = await _service.GetSalesAsync();
             return Ok(sales);
         }
 
@@ -27,7 +28,7 @@ namespace ConcesionarioBack.Controllers
         [Route("[action]/{id}")]
         public async Task<ActionResult<Sale>> GetSaleByIdAsync(int id)
         {
-            var sale = await service.GetSaleByIdAsync(id);
+            var sale = await _service.GetSaleByIdAsync(id);
             return Ok(sale);
         }
 
@@ -35,7 +36,7 @@ namespace ConcesionarioBack.Controllers
         [Route("[action]")]
         public async Task<ActionResult<Sale>> CreateSaleAsync(CreateSaleDto sale)
         {
-            var newSale = await service.CreateSaleAsync(sale);
+            var newSale = await _service.CreateSaleAsync(sale);
             return Ok(newSale);
         }
 
@@ -43,7 +44,7 @@ namespace ConcesionarioBack.Controllers
         [Route("[action]")]
         public async Task<ActionResult<Sale>> UpdateSaleAsync(UpdateSaleDto sale)
         {
-            var updatedSale = await service.UpdateSaleAsync(sale);
+            var updatedSale = await _service.UpdateSaleAsync(sale);
             return Ok(updatedSale);
         }
 
@@ -51,7 +52,7 @@ namespace ConcesionarioBack.Controllers
         [Route("[action]/{id}")]
         public async Task<ActionResult<bool>> DeleteSaleAsync(int id)
         {
-            var result = await service.DeleteSaleAsync(id);
+            var result = await _service.DeleteSaleAsync(id);
             return Ok(result);
         }
     }

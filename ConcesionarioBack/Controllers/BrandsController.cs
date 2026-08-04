@@ -3,6 +3,7 @@ using ConcesionarioBack.Models.Requests;
 using ConcesionarioBack.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ConcesionarioBack.Services.Interfaces;
 
 namespace ConcesionarioBack.Controllers
 {
@@ -10,17 +11,17 @@ namespace ConcesionarioBack.Controllers
     [ApiController]
     public class BrandsController : ControllerBase
     {
-        private BrandsService service;
-        public BrandsController(BrandsService service)
+        private readonly IBrandsService _service;
+        public BrandsController(IBrandsService service)
         {
-            this.service = service;
+            _service = service;
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<ActionResult<List<Brand>>> GetBrandsAsync()
         {
-            var brands = await service.GetBrandsAsync();
+            var brands = await _service.GetBrandsAsync();
             return Ok(brands);
         }
 
@@ -30,7 +31,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var brand = await service.GetBrandByIdAsync(id);
+                var brand = await _service.GetBrandByIdAsync(id);
                 return Ok(brand);
             }
             catch (Exception ex)
@@ -45,7 +46,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var createdBrand = await service.CreateBrandAsync(brand);
+                var createdBrand = await _service.CreateBrandAsync(brand);
                 return Ok(createdBrand);
             }
             catch (Exception ex)
@@ -60,7 +61,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var updatedBrand = await service.UpdateBrandAsync(brand);
+                var updatedBrand = await _service.UpdateBrandAsync(brand);
                 return Ok(updatedBrand);
             }
             catch (Exception ex)
@@ -75,7 +76,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var result = await service.DeleteBrandAsync(id);
+                var result = await _service.DeleteBrandAsync(id);
                 return Ok(result);
             }
             catch (Exception ex)

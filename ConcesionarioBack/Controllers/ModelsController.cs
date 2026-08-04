@@ -3,6 +3,7 @@ using ConcesionarioBack.Models.Requests;
 using ConcesionarioBack.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ConcesionarioBack.Services.Interfaces;
 
 namespace ConcesionarioBack.Controllers
 {
@@ -10,17 +11,17 @@ namespace ConcesionarioBack.Controllers
     [ApiController]
     public class ModelsController : ControllerBase
     {
-        private ModelsService service;
+        private readonly ModelsService _service;
         public ModelsController(ModelsService service)
         {
-            this.service = service;
+            _service = service;
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<ActionResult<List<Model>>> GetModelsAsync()
         {
-            var models = await service.GetModelsAsync();
+            var models = await _service.GetModelsAsync();
             return Ok(models);
         }
 
@@ -28,7 +29,7 @@ namespace ConcesionarioBack.Controllers
         [Route("[action]/{id}")]
         public async Task<ActionResult<Model>> GetModelByIdAsync(int id)
         {
-            var model = await service.GetModelByIdAsync(id);
+            var model = await _service.GetModelByIdAsync(id);
             return Ok(model);
         }
 
@@ -36,7 +37,7 @@ namespace ConcesionarioBack.Controllers
         [Route("[action]")]
         public async Task<ActionResult<Model>> CreateModelAsync(CreateModelDto model)
         {
-            var newModel = await service.CreateModelAsync(model);
+            var newModel = await _service.CreateModelAsync(model);
             return Ok(newModel);
         }
 
@@ -44,7 +45,7 @@ namespace ConcesionarioBack.Controllers
         [Route("[action]")]
         public async Task<ActionResult<Model>> UpdateModelAsync(UpdateModelDto model)
         {
-            var updatedModel = await service.UpdateModelAsync(model);
+            var updatedModel = await _service.UpdateModelAsync(model);
             return Ok(updatedModel);
         }
 
@@ -52,7 +53,7 @@ namespace ConcesionarioBack.Controllers
         [Route("[action]/{id}")]
         public async Task<ActionResult<bool>> DeleteModelAsync(int id)
         {
-            var result = await service.DeleteModelAsync(id);
+            var result = await _service.DeleteModelAsync(id);
             return Ok(result);
         }
     }

@@ -4,6 +4,7 @@ using ConcesionarioBack.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using ConcesionarioBack.Services.Interfaces;
 
 namespace ConcesionarioBack.Controllers
 {
@@ -11,17 +12,17 @@ namespace ConcesionarioBack.Controllers
     [ApiController]
     public class VehiclesController : ControllerBase
     {
-        private VehiclesService service;
-        public VehiclesController(VehiclesService service)
+        private readonly IVehiclesService _service;
+        public VehiclesController(IVehiclesService service)
         {
-            this.service = service;
+            _service = service;
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<ActionResult<List<Vehicle>>> GetVehiclesAsync()
         {
-            var vehicles = await service.GetVehiclesAsync();
+            var vehicles = await _service.GetVehiclesAsync();
             return Ok(vehicles);
         }
 
@@ -31,7 +32,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var vehicle = await service.GetVehicleByIdAsync(id);
+                var vehicle = await _service.GetVehicleByIdAsync(id);
                 return Ok(vehicle);
             }
             catch (Exception ex)
@@ -44,7 +45,7 @@ namespace ConcesionarioBack.Controllers
         [Route("[action]")]
         public async Task<ActionResult<Vehicle>> CreateVehicleAsync(CreateVehicleDto vehicle)
         {
-            var newVehicle = await service.CreateVehicleAsync(vehicle);
+            var newVehicle = await _service.CreateVehicleAsync(vehicle);
             return Ok(newVehicle);
         }
 
@@ -54,7 +55,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var updatedVehicle = await service.UpdateVehicleAsync(vehicle);
+                var updatedVehicle = await _service.UpdateVehicleAsync(vehicle);
                 return Ok(updatedVehicle);
             }
             catch (Exception ex)
@@ -69,7 +70,7 @@ namespace ConcesionarioBack.Controllers
         {
             try
             {
-                var result = await service.DeleteVehicleAsync(id);
+                var result = await _service.DeleteVehicleAsync(id);
                 return Ok(result);
             }
             catch (Exception ex)

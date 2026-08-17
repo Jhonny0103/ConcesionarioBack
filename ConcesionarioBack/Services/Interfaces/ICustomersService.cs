@@ -5,6 +5,7 @@ namespace ConcesionarioBack.Services.Interfaces
 {
     public interface ICustomersService
     {
+        public Task<Customer> GetLogin(AuthLoginDto login);
         public Task<List<Customer>> GetCustomersAsync();
         public Task<Customer> GetCustomerByIdAsync(int id);
         public Task<Customer> CreateCustomerAsync(CreateCustomerDto customer);

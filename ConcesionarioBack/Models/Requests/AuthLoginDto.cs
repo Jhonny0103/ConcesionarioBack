@@ -1,0 +1,8 @@
+﻿namespace ConcesionarioBack.Models.Requests
+{
+    public class AuthLoginDto
+    {
+        public string FirstName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+    }
+}

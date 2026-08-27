@@ -13,5 +13,6 @@ namespace ConcesionarioBack.Data
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Sale> Sales { get; set; }
+        public DbSet<Employe> Employees { get; set; }
     }
 }

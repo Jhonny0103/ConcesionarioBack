@@ -10,22 +10,22 @@ namespace ConcesionarioBack.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly ICustomersService _service;
-        public AuthController(ICustomersService service)
+        private readonly IEmployeesService _service;
+        public AuthController(IEmployeesService service)
         {
             _service = service;
         }
         [HttpGet("login")]
-        public async Task<ActionResult<Customer>> Login([FromQuery] AuthLoginDto login)
+        public async Task<ActionResult<Employe>> Login([FromQuery] AuthLoginDto login)
         {
-            var customer = await this._service.GetLogin(login);
-            if (customer == null)
+            var employe = await this._service.GetLogin(login);
+            if (employe == null)
             {
-                return NotFound("Usuario no encontrado");
+                return NotFound("Empleado no encontrado");
             }
             else
             {
-                return Ok(customer);
+                return Ok(employe);
             }
         }
     }

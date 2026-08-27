@@ -17,6 +17,7 @@ builder.Services.AddScoped<IModelsService,ModelsService>();
 builder.Services.AddScoped<IVehiclesService,VehiclesService>();
 builder.Services.AddScoped<ICustomersService,CustomersService>();
 builder.Services.AddScoped<ISalesService,SalesService>();
+builder.Services.AddScoped<IEmployeesService,EmployeesService>();
 
 //3. Configuramos los CORS para permitir peticiones desde Angular, que normalmente se ejecuta en un puerto diferente al de la API.
 builder.Services.AddCors(options =>

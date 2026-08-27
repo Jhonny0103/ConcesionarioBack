@@ -11,8 +11,8 @@ namespace ConcesionarioBack.Controllers
     [ApiController]
     public class ModelsController : ControllerBase
     {
-        private readonly ModelsService _service;
-        public ModelsController(ModelsService service)
+        private readonly IModelsService _service;
+        public ModelsController(IModelsService service)
         {
             _service = service;
         }

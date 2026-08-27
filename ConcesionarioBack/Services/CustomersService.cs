@@ -15,12 +15,6 @@ namespace ConcesionarioBack.Services
             this.context = context;
         }
 
-        //Login
-        public async Task<Customer> GetLogin(AuthLoginDto login)
-        {
-            return await this.context.Customers.FirstOrDefaultAsync(c => c.FirstName == login.FirstName && c.Email == login.Email && c.IsActive);
-        }
-
         public async Task<List<Customer>> GetCustomersAsync()
         {
             return await this.context.Customers.ToListAsync();

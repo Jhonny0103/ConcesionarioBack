@@ -4,6 +4,7 @@ using ConcesionarioBack.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ConcesionarioBack.Services.Interfaces;
+using ConcesionarioBack.Entities.Views;
 
 namespace ConcesionarioBack.Controllers
 {
@@ -25,6 +26,14 @@ namespace ConcesionarioBack.Controllers
         }
 
         [HttpGet]
+        [Route("[action]/details")]
+        public async Task<ActionResult<List<VwSaleDetails>>> GetSalesDetailsAsync()
+        {
+            var sales = await _service.GetSalesDetailsAsync();
+            return Ok(sales);
+        }
+
+        [HttpGet]
         [Route("[action]/{id}")]
         public async Task<ActionResult<Sale>> GetSaleByIdAsync(int id)
         {
@@ -40,7 +49,7 @@ namespace ConcesionarioBack.Controllers
             return Ok(newSale);
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("[action]")]
         public async Task<ActionResult<Sale>> UpdateSaleAsync(UpdateSaleDto sale)
         {

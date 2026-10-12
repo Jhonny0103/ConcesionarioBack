@@ -1,5 +1,6 @@
 ﻿using ConcesionarioBack.Data;
 using ConcesionarioBack.Entities;
+using ConcesionarioBack.Entities.Views;
 using ConcesionarioBack.Models.Requests;
 using ConcesionarioBack.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,11 @@ namespace ConcesionarioBack.Services
         public async Task<List<Sale>> GetSalesAsync()
         {
             return await this.context.Sales.ToListAsync();
+        }
+
+        public async Task<List<VwSaleDetails>> GetSalesDetailsAsync()
+        {
+            return await this.context.VwSaleDetails.ToListAsync();
         }
 
         public async Task<Sale> GetSaleByIdAsync(int id)

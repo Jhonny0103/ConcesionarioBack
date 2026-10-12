@@ -59,6 +59,7 @@ namespace ConcesionarioBack.Services
                 existingVehicle.Color = vehicle.Color;
                 existingVehicle.Year = vehicle.Year;
                 existingVehicle.Price = vehicle.Price;
+                existingVehicle.Mileage = vehicle.Mileage;
                 await context.SaveChangesAsync();
                 return existingVehicle;
             }

@@ -1,4 +1,5 @@
 ﻿using ConcesionarioBack.Entities;
+using ConcesionarioBack.Entities.Views;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConcesionarioBack.Data
@@ -14,5 +15,6 @@ namespace ConcesionarioBack.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Employe> Employees { get; set; }
+        public DbSet<VwSaleDetails> VwSaleDetails { get; set; }
     }
 }
